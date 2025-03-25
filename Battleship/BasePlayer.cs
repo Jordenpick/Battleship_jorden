@@ -2,32 +2,18 @@
 {
     class BasePlayer
     {
-        private Grid grid;
-        private Random rand;
+        public static string[] shipNames = { "Toeculier", "Swayzumbel", "MudSplatter", "Cantabull", "Pludderslap" };
+        public static int[] shipLength = { 5, 4, 3, 3, 2 };
+        public Grid grid;
+        public Random rand;
 
         public BasePlayer()
         {
             grid = new Grid();
             rand = new Random();
-            PlaceShips();
         }
 
-        public void PlaceShips()
-        {
-            Random rand = new Random();
-            int x = 5;
-            int y = 5;
-
-            string direction = "H";
-            if (rand.Next(0, 2) == 0)
-            {
-                direction = "V";
-            }
-            
-            grid.PlaceShip(new Ship("Battleship", 4), x, y, direction);
-        }
-
-        public bool Attack(Grid enemyGrid)
+        public virtual bool Attack(Grid enemyGrid)
         {
             int x, y;
             do
@@ -45,3 +31,4 @@
         }
     }
 }
+

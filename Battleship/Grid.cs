@@ -4,9 +4,10 @@
     {
         private char[,] Board;
         public List<Ship> Ships;
-        private (int,int) BoardDimensions = (10, 10);
+        private (int, int) BoardDimensions = (10, 10);
         public Grid()
         {
+
             Board = new char[BoardDimensions.Item1, BoardDimensions.Item2];
             Ships = new List<Ship>();
             for (int i = 0; i < BoardDimensions.Item1; i++)
@@ -20,7 +21,7 @@
 
         public void DisplayBoard(bool hideShips)
         {
-            string startLetter = "ABCDEFGHIJ";
+            string startLetter = "0123456789";
             for (int i = 0; i < BoardDimensions.Item1; i++)
             {
                 if (i == 0)
@@ -29,9 +30,9 @@
                 }
                 for (int j = 0; j < BoardDimensions.Item2; j++)
                 {
-                    if(j == 0)
+                    if (j == 0)
                     {
-                        Console.Write(startLetter[i] +" ");
+                        Console.Write(startLetter[i] + " ");
                     }
                     char displayChar = Board[i, j];
                     if (hideShips && displayChar == 'S')
@@ -42,7 +43,18 @@
                 }
                 Console.ResetColor();
                 Console.WriteLine();
+
             }
+        }
+
+        public int BoardLength()
+        {
+            return BoardDimensions.Item1;
+        }
+
+        public int BoardHeight()
+        {
+            return BoardDimensions.Item2;
         }
 
         public bool PlaceShip(Ship ship, int startX, int startY, string direction)
@@ -79,6 +91,7 @@
 
         public bool MakeGuess(int x, int y)
         {
+
             if (Board[x, y] == 'S')
             {
                 Board[x, y] = 'X';

@@ -4,13 +4,23 @@
     {
         static void Main()
         {
-            BasePlayer player = new BasePlayer();
-            BasePlayer ai = new BasePlayer();
+            Player player = new Player();
+            AIPlayer ai = new AIPlayer();
             Grid aiGrid = ai.GetGrid();
             Grid playerGrid = player.GetGrid();
             int shots = 0;
+            string[] battleShipWord =
+            {
+                   "BATTLESHIP!!!",
+                   "PRESS ENTER TO START!"
+            };
 
-            Console.WriteLine("Welcome to Battleship! Press Enter to start.");
+            
+            
+            foreach(string word in battleShipWord)
+            {
+                Console.WriteLine(word);
+            }
             Console.ReadLine();
 
             while (true)
@@ -21,10 +31,8 @@
 
                 Console.WriteLine("\nYour Board:");
                 playerGrid.DisplayBoard(false);
-                Console.WriteLine("Enter to fire random shots");
-                Console.ReadLine();
+                player.PlaceShipsManually();
                 player.Attack(aiGrid);
-
                 shots++;
                 if (aiGrid.CheckWin())
                 {
